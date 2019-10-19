@@ -36,6 +36,9 @@ public class Movie implements Serializable{
 	
 	@NotNull
 	@ManyToMany
+	@JoinTable(name="movie_studio",
+			joinColumns = {@JoinColumn(name="movie_id")},
+			inverseJoinColumns = {@JoinColumn(name = "studio_id")})
 	private List<Studio> studios;
 	
 	@NotNull

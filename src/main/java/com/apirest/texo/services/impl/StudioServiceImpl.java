@@ -15,8 +15,11 @@ public class StudioServiceImpl implements StudioService{
 	
 	@Override
 	public Studio findByName(String name) {
-		
 		return studioRepository.findByName(name);
+	}
+
+	public Studio persit(Studio studio) {
+		return studioRepository.saveAndFlush(studio);
 	}
 
 }

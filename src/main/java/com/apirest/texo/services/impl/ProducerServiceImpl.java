@@ -15,13 +15,11 @@ public class ProducerServiceImpl implements ProducerService{
 	
 	@Override
 	public Producer findByName(String name) {
-		
 		return producerRepository.findByName(name);
 	}
 
 	@Override
 	public Producer persist(Producer producer) {
-		
 		return producerRepository.saveAndFlush(producer);
 	}
 

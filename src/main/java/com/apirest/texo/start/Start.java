@@ -63,38 +63,36 @@ public class Start implements ApplicationListener<ApplicationReadyEvent>{
 	}
 
 	private List<Producer> preencheProducer(String producerRow) {
-		
 		List<Producer> producers = new ArrayList<Producer>();
-		
-		Producer producer;
-		Producer prod;
-		
 		producerRow = producerRow.replaceAll("and", ",");
 		String[] atributs = producerRow.split(",");
-		
+
 		for(String atribut: atributs) {
-			
-			prod = producerService.findByName(atribut.trim());
-			if(prod != null) {
-				producers.add(prod);
+			Producer producer = producerService.findByName(atribut.trim());
+			if(producer != null) {
+				producers.add(producer);
 			}else {
 				producer = new Producer();
 				producer.setName(atribut.trim());
-                producer = producerService.persist(producer);
-				producers.add(producer);
+				producers.add(producerService.persist(producer));
 			}
 		}
 		return producers;
 	}
 
 	private List<Studio> preencheStudio(String studioRow) {
-		List<Studio> studios = new ArrayList<Studio>();
+		List<Studio> studios = new ArrayList<>();
 		Studio studio;
 		String[] atributs = studioRow.split(",");
 		for(String atribut: atributs) { 
-			studio = new Studio();
-			studio.setName(atribut.trim());
-			
+			studio = studioService.findByName(atribut.trim());
+			if (studio != null) {
+				studios.add(studio);
+			} else {
+				studio = new Studio();
+				studio.setName(atribut.trim());
+				studios.add(studioService.persit(studio));
+			}
 			studios.add(studio);
 		}
 		return studios;

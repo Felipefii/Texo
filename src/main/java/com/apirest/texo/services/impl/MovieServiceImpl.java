@@ -17,8 +17,7 @@ public class MovieServiceImpl implements MovieService{
 	
 	@Override
 	public Movie persist(Movie movie) {
-		
-		return movieRepository.save(movie);
+		return movieRepository.saveAndFlush(movie);
 	}
 
 	@Override
