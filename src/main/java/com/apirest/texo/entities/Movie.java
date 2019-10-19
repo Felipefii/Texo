@@ -1,21 +1,29 @@
 package com.apirest.texo.entities;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.opencsv.bean.CsvBindByName;
 
 @Entity
-public class Movie {
+@Table(name = "movie")
+public class Movie implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6653545376192952243L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
@@ -27,12 +35,15 @@ public class Movie {
 	private String title;
 	
 	@NotNull
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany
 	private List<Studio> studios;
 	
 	@NotNull
-	@OneToMany(cascade = CascadeType.PERSIST)
-	private List<Producer> producer;
+	@ManyToMany
+	@JoinTable(name="movie_producer", 
+		joinColumns = {@JoinColumn(name="movie_id")}, 
+		inverseJoinColumns = {@JoinColumn(name = "producer_id")})
+	private List<Producer> producers;
 	
 	private Boolean winner;
 
@@ -64,6 +75,7 @@ public class Movie {
 		this.title = title;
 	}
 
+	
 	public List<Studio> getStudios() {
 		return studios;
 	}
@@ -73,11 +85,11 @@ public class Movie {
 	}
 
 	public List<Producer> getProducer() {
-		return producer;
+		return producers;
 	}
-
-	public void setProducer(List<Producer> producer) {
-		this.producer = producer;
+	
+	public void setProducer(List<Producer> producers) {
+		this.producers = producers;
 	}
 
 	public Boolean getWinner() {

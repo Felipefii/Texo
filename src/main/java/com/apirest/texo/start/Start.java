@@ -15,6 +15,8 @@ import com.apirest.texo.entities.Movie;
 import com.apirest.texo.entities.Producer;
 import com.apirest.texo.entities.Studio;
 import com.apirest.texo.services.MovieService;
+import com.apirest.texo.services.ProducerService;
+import com.apirest.texo.services.StudioService;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
@@ -23,6 +25,12 @@ public class Start implements ApplicationListener<ApplicationReadyEvent>{
 	
 	@Autowired
 	MovieService movieService;
+	
+	@Autowired
+	StudioService studioService;
+	
+	@Autowired
+	ProducerService producerService;
 
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -55,14 +63,26 @@ public class Start implements ApplicationListener<ApplicationReadyEvent>{
 	}
 
 	private List<Producer> preencheProducer(String producerRow) {
+		
 		List<Producer> producers = new ArrayList<Producer>();
+		
 		Producer producer;
+		Producer prod;
+		
 		producerRow = producerRow.replaceAll("and", ",");
 		String[] atributs = producerRow.split(",");
+		
 		for(String atribut: atributs) {
-			producer = new Producer();
-			producer.setName(atribut.trim());
-			producers.add(producer);
+			
+			prod = producerService.findByName(atribut.trim());
+			if(prod != null) {
+				producers.add(prod);
+			}else {
+				producer = new Producer();
+				producer.setName(atribut.trim());
+                producer = producerService.persist(producer);
+				producers.add(producer);
+			}
 		}
 		return producers;
 	}
@@ -71,9 +91,10 @@ public class Start implements ApplicationListener<ApplicationReadyEvent>{
 		List<Studio> studios = new ArrayList<Studio>();
 		Studio studio;
 		String[] atributs = studioRow.split(",");
-		for(String atribut: atributs) {
+		for(String atribut: atributs) { 
 			studio = new Studio();
 			studio.setName(atribut.trim());
+			
 			studios.add(studio);
 		}
 		return studios;

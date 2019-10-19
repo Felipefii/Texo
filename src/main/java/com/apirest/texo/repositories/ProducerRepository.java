@@ -6,4 +6,6 @@ import com.apirest.texo.entities.Producer;
 
 public interface ProducerRepository extends JpaRepository<Producer, Long>{
 
+	Producer findByName(String name);
+	
 }

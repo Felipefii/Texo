@@ -6,4 +6,6 @@ import com.apirest.texo.entities.Movie;
 
 public interface MovieRepository extends JpaRepository<Movie, Long>{
 
+	
+	
 }

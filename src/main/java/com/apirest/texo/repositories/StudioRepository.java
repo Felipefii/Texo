@@ -6,4 +6,6 @@ import com.apirest.texo.entities.Studio;
 
 public interface StudioRepository extends JpaRepository<Studio, Long> {
 
+	Studio findByName(String name);
+	
 }

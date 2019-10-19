@@ -1,21 +1,35 @@
 package com.apirest.texo.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Producer {
+@Table(name = "producer")
+public class Producer implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5867491303385765500L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
 	private String name;
-
+	
+	@ManyToMany(mappedBy = "producers")
+	private List<Movie> movies;
+				
 	public Producer() {
 		super();
 	}
@@ -34,6 +48,16 @@ public class Producer {
 
 	public void setName(String name) {
 		this.name = name;
+	}	
+	
+	
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
 	}
 
 	@Override
