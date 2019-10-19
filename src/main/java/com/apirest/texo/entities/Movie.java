@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.opencsv.bean.CsvBindByName;
+
 @Entity
 public class Movie {
 	
