@@ -1,5 +1,8 @@
 package com.apirest.texo.controllers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,20 +11,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MovieControllerTest {
+public class ProducerControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
-	public void moviesTest() throws Exception {
-		this.mockMvc.perform(get("/movies"))
-		.andExpect(status().isOk());
+	public void producerAwardsTest() throws Exception {
+		this.mockMvc.perform(get("/producers")).andExpect(status().isOk());
 	}
 }
