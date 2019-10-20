@@ -3,7 +3,6 @@ package com.apirest.texo.services;
 import java.util.List;
 
 import com.apirest.texo.entities.Movie;
-import com.apirest.texo.entities.Producer;
 
 
 public interface MovieService {
@@ -12,5 +11,5 @@ public interface MovieService {
 	
 	List<Movie> findAll();
 	
-	List<Movie> findByProducerAndWinner(Producer producer);
+	List<Movie> findAllMoviesWinners(Boolean win);
 }
