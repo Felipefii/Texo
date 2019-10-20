@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apirest.texo.entities.Movie;
+import com.apirest.texo.entities.Producer;
 import com.apirest.texo.repositories.MovieRepository;
 import com.apirest.texo.services.MovieService;
 
@@ -23,6 +24,12 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public List<Movie> findAll() {
 		return movieRepository.findAll(); 
+	}
+
+	@Override
+	public List<Movie> findByProducerAndWinner(Producer producer) {
+
+		return movieRepository.findByProducerAndWinnerOrderByAno(producer);
 	}
 
 }

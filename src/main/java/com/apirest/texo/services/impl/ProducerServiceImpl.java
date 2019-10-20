@@ -1,5 +1,7 @@
 package com.apirest.texo.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class ProducerServiceImpl implements ProducerService{
 	@Override
 	public Producer persist(Producer producer) {
 		return producerRepository.saveAndFlush(producer);
+	}
+
+	@Override
+	public List<Producer> findAll() {
+		
+		return producerRepository.findAll();
 	}
 
 	
