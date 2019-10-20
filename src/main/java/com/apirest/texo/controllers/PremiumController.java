@@ -59,6 +59,7 @@ public class PremiumController {
 		}
 		iidto.sort(Comparator.comparing(IntervalImplDTO::getInterval));
 		IntervalDTO intervalDTO = new IntervalDTO(iidto.get(iidto.size()-1), iidto.get(0));
+		
 		return new ResponseEntity<IntervalDTO>(intervalDTO, HttpStatus.OK);
 	}
 	
