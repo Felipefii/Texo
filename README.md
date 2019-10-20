@@ -23,3 +23,6 @@ Java 8, devTools, H2 database, OpenCSV
 
 * **por linha de comando no diretório target execute:**
 * java -jar texo-0.0.1-SNAPSHOT.jar
+
+
+* **Acesse** - http://localhost:8080/awards
