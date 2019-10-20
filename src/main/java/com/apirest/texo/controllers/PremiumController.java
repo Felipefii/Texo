@@ -15,7 +15,6 @@ import com.apirest.texo.dto.IntervalDTO;
 import com.apirest.texo.dto.IntervalImplDTO;
 import com.apirest.texo.entities.Movie;
 import com.apirest.texo.entities.Producer;
-import com.apirest.texo.services.MovieService;
 import com.apirest.texo.services.ProducerService;
 
 @RestController
@@ -25,13 +24,14 @@ public class PremiumController {
 	@Autowired
 	ProducerService producerService;
 	
-	@Autowired
-	MovieService movieService;
-	
 	@GetMapping
 	public ResponseEntity<IntervalDTO> findProducerAwards() {
 		
 		List<Producer> producers = producerService.findAll();
+		if(producers.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 		List<Movie> movies;
 		List<IntervalImplDTO> iidto = new ArrayList<IntervalImplDTO>();
 		List<Movie> winnersMovies;
