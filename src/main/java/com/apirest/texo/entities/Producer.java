@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "producer")
 public class Producer implements Serializable{
@@ -28,6 +30,7 @@ public class Producer implements Serializable{
 	private String name;
 	
 	@ManyToMany(mappedBy = "producers")
+	@JsonIgnore
 	private List<Movie> movies;
 				
 	public Producer() {
