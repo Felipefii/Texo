@@ -19,6 +19,19 @@ public class ProducerController {
 	@Autowired
 	ProducerService producerService;
 	
+	/**
+	 * Metodo utilizado para retornar dados à requisição get
+	 * buscando por todos os produtores salvos na base de dados 
+	 * 
+	 * pode ser acessado por meio do link
+	 * http://localhost:8080/producers
+	 * 
+	 * @author Felipe Nazário 
+	 *  
+	 * @return retorna todos os produtores
+	 * 
+	 */	
+	
 	@GetMapping
 	public ResponseEntity<List<Producer>> findAllProducers(){
 		

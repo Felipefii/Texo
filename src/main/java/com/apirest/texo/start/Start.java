@@ -32,6 +32,15 @@ public class Start implements ApplicationListener<ApplicationReadyEvent>{
 	@Autowired
 	ProducerService producerService;
 
+	/*
+	 * 
+	 * @autor Felipe Nazário
+	 * 
+	 * Método utilizado para a ler o arquivo movielist.csv
+	 * na pasta raiz do projeto e salvar os dados no banco de dados H2 
+	 * 
+	 * */
+	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 			

@@ -24,6 +24,24 @@ public class PremiumController {
 	@Autowired
 	ProducerService producerService;
 	
+	
+	/**
+	 * Metodo Get para o trabalho - 
+	 * Por meio de todos os filmes vencedores do prêmio para cada produtor
+	 * são calculados os intervalos de tempo em anos entre dois prêmios seguidos
+	 * os objetos são guardados em lista e é retornado apenas o produtor com maior
+	 * e o produtor com o menor intervalo.   
+	 * 
+	 * Pode ser acessado por meio do link
+	 * http://localhost:8080/awards
+	 * 
+	 * @author Felipe Nazário 
+	 *  
+	 * @return retorna um objeto IntervalDTO com os dados específicos
+	 * dos produtores com maior e menor intervalor entre dois prêmios 
+	 * 
+	 */
+	
 	@GetMapping
 	public ResponseEntity<IntervalDTO> findProducerAwards() {
 		
